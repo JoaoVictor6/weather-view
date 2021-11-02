@@ -17,12 +17,57 @@ const ldsRiple = keyframes`
   }
 `;
 
+const appear = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 export const Container = styled.main`
   height: 100vh;
   display: grid;
   place-content: center;
+  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  
+  section {
+    animation: ${appear} .5s;
+    user-select: none;
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 98px 0 64px;
+    header {
+      h1 {
+        color: #fff;
+        font-size: 64px;
+      }
+      h2 {
+        color: rgba(255,255,255,.62);
+        font-size: 32px;
+        font-weight: 400;
+      }
+    }
 
-  background: grey;
+    div {
+      color: #fff;
+      h1.temp {
+        font-size: 148px;
+      }
+      h2.humidity {
+        color: rgba(255,255,255,.62);
+        font-weight: 400;
+        font-size: 32px;
+      }
+    }
+  }
 `;
 
 export const ContainerIfNotPermission = styled.main`

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ContainerIfNotPermission } from './styles/pages/app';
+import { Container, ContainerIfNotPermission } from './styles/pages/app';
+import rainAndDrizzleImage from './assets/rain_drizzle.jpg';
 
 type CoordsType = {
   latitude: number
@@ -22,13 +23,28 @@ function App() {
     <div>
       {coords === null ? (
         <ContainerIfNotPermission>
-          <div className="content">
+          <section className="content">
             <h1>Turn on geolocalization for use this web app</h1>
             <div className="load"><div /></div>
-          </div>
+          </section>
         </ContainerIfNotPermission>
       ) : (
-        <div>aaaaaaaaaaaaaa</div>
+        <Container style={{
+          backgroundImage: `url(${rainAndDrizzleImage})`,
+        }}
+        >
+          <section>
+            <header>
+              <h1>London, UK</h1>
+              <h2>light intensity drizzle</h2>
+            </header>
+            <div>
+              <h1 className="temp">27°</h1>
+              <h2 className="humidity">Humidity: 81%</h2>
+            </div>
+
+          </section>
+        </Container>
       )}
     </div>
   );
