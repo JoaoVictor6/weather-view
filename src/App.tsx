@@ -1,24 +1,9 @@
-import { useEffect, useState } from 'react';
 import { Container, ContainerIfNotPermission } from './styles/pages/app';
 import rainAndDrizzleImage from './assets/rain_drizzle.jpg';
-
-type CoordsType = {
-  latitude: number
-  longitude: number
-}
+import useGeolocation from './hooks/useGeolocation';
 
 function App() {
-  const [coords, setCoords] = useState < CoordsType|null >(null);
-  useEffect(() => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setCoords({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      });
-    }
-  }, []);
+  const { coords } = useGeolocation();
   return (
     <div>
       {coords === null ? (
