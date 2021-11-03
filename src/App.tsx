@@ -1,8 +1,13 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
 import { Container, ContainerIfNotPermission } from './styles/pages/app';
-import rainAndDrizzleImage from './assets/rain_drizzle.jpg';
 import useGeolocation from './hooks/useGeolocation';
+import rainAndDrizzleImage from './assets/rain_drizzle.jpg';
+import cloudsImage from './assets/clouds.jpg';
+import snowImage from './assets/snow.jpg';
+import clearImage from './assets/clear.jpg';
+import thunderstormImage from './assets/thunderstorm.jpg';
+import mistImage from './assets/mist.jpg';
 
 interface WeatherApiResponse {
   name: string
@@ -24,6 +29,23 @@ interface WeatherApiResponse {
     sea_level: number
     grnd_level: number
   },
+}
+
+type mainWeatherValues = 'clouds' | 'rain' | 'drizzle' | 'snow' | 'clear' | 'thunderstorm' | 'mist'
+function backgroundSelector(main:string = 'clouds') {
+  const mainWeather = main.toLowerCase() as mainWeatherValues;
+
+  const bgMaps:Record<mainWeatherValues, string> = {
+    clouds: cloudsImage,
+    rain: rainAndDrizzleImage,
+    drizzle: rainAndDrizzleImage,
+    snow: snowImage,
+    clear: clearImage,
+    thunderstorm: thunderstormImage,
+    mist: mistImage,
+  };
+
+  return bgMaps[mainWeather];
 }
 
 function App() {
@@ -52,7 +74,7 @@ function App() {
         </ContainerIfNotPermission>
       ) : (
         <Container style={{
-          backgroundImage: `url(${rainAndDrizzleImage})`,
+          backgroundImage: `url(${backgroundSelector(weatherApi?.weather[0].main)})`,
         }}
         >
           <section>
