@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Container, ContainerIfNotPermission } from './styles/pages/app';
 import useGeolocation from './hooks/useGeolocation';
 import rainAndDrizzleImage from './assets/rain_drizzle.jpg';
@@ -77,6 +78,12 @@ function App() {
           backgroundImage: `url(${backgroundSelector(weatherApi?.weather[0].main)})`,
         }}
         >
+          <Helmet>
+            <link
+              rel="icon"
+              href={`http://openweathermap.org/img/wn/${weatherApi?.weather[0].icon}@2x.png`}
+            />
+          </Helmet>
           <section>
             <header>
               <h1>{weatherApi?.name}</h1>
