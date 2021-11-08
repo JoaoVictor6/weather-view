@@ -40,6 +40,7 @@ export const Container = styled.main`
     animation: ${appear} .5s;
     user-select: none;
     display: flex;
+    flex-wrap: wrap;
     width: 100vw;
     justify-content: space-between;
     align-items: center;
@@ -59,12 +60,30 @@ export const Container = styled.main`
     div {
       color: #fff;
       h1.temp {
-        font-size: 148px;
+        font-size: clamp(5rem, 15vw, 164px);
       }
       h2.humidity {
         color: rgba(255,255,255,.62);
         font-weight: 400;
         font-size: 32px;
+      }
+    }
+  }
+  @media (max-width: 414px) {
+    section {
+      flex-direction: column;
+      padding: 0;
+      justify-content: center;
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1.temp {
+          font-size: clamp(5rem, 148PX, 164px);
+        }
+        h1.humidity{
+
+        }
       }
     }
   }
@@ -85,7 +104,7 @@ export const ContainerIfNotPermission = styled.main`
     h1 {
       font-weight: 400;
       text-align: center;
-      font-size: clamp(4rem, 8rem + -17.8138vw, 1.5rem);
+      font-size: clamp(32px,6vw,164px);
     }
 
     .load {
