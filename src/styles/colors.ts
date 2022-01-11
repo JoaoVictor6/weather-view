@@ -1,4 +1,4 @@
 export default {
-  white: '#ffffff',
-  whiteTransparent: 'rgba(255,255,255,0.62)',
+  background: '#1F2A33',
+  textColor: '#D7D0DC',
 };
