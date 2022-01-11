@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { Nav } from './style';
 
-export default function Menu() {
+type MenuProps = {
+  title: {
+    region?: string
+    city?: string
+  }
+}
+export default function Menu({ title }: MenuProps) {
   const [open, isOpen] = useState(false);
   return (
     <Nav>
@@ -13,7 +19,7 @@ export default function Menu() {
         <div className={`line ${open && 'open'}`} />
       </button>
       <h1>
-        Bangu, RJ
+        {title.city ? `${title.city}, ${title.region}` : 'Not found'}
       </h1>
       <button type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28">
