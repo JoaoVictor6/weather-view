@@ -21,6 +21,10 @@ export const Container = styled.main`
       font-weight: 700;
       font-size: 8em;
     }
+
+    img {
+      width: 80%;
+    }
   }
 
   .header__footer {
