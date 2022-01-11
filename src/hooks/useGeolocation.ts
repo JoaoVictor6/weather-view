@@ -6,7 +6,10 @@ type CoordsType = {
 }
 
 export default function useGeolocation() {
-  const [coords, setCoords] = useState<CoordsType|null >(null);
+  const [coords, setCoords] = useState<CoordsType>({
+    latitude: 0,
+    longitude: 0,
+  });
   useEffect(() => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
