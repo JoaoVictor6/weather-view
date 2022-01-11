@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 18px; 
+  color: #fff;
+  h1 {
+    font-weight: 600;
+    font-size: 1.7rem;
+    overflow-wrap: break-word;
+  }
   .line {
     width: 32px;
     height: 4px;
@@ -37,13 +47,12 @@ export const Nav = styled.nav`
         transform: rotate(-45deg) translate(35px, 35px);
       }
     }
-  button {
+  button.hamburger-menu {
     height: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    cursor: pointer;
   }
 `;
