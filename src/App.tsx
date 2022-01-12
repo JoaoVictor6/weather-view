@@ -65,7 +65,7 @@ function App() {
             )}
           </section>
         </header>
-        {forecasts && <ForecastsContainer forecast={forecasts?.slice(1, 7)} />}
+        {forecasts && <ForecastsContainer forecast={forecasts?.slice(1, 8)} />}
       </Container>
     </>
   );
