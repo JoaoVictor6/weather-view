@@ -5,16 +5,16 @@ import sunrise from './assets/images/sunrise.png';
 import sunset from './assets/images/sunset.png';
 import { getWeather } from './utils/axios';
 import { APIResponse, ForecastsProps } from './interfaces';
-import useGeolocation from './hooks/useGeolocation';
 
 import locationNotFound from './assets/images/location-not-found.svg';
+import ForecastsContainer from './components/ForecastsContainer';
+import useGeolocation from './hooks/useGeolocation';
 
 function App() {
   const [forecasts, setForecasts] = useState<ForecastsProps[]>();
   const [weatherInfo, setWeatherInfo] = useState<
     Pick<APIResponse, 'current_observation' | 'location'>
   >();
-
   const { coords } = useGeolocation();
   useEffect(() => {
     (async () => {
@@ -27,7 +27,6 @@ function App() {
         });
       }
     })();
-    console.log(forecasts);
   }, [coords]);
   return (
     <>
@@ -66,6 +65,7 @@ function App() {
             )}
           </section>
         </header>
+        {forecasts && <ForecastsContainer forecast={forecasts?.slice(1, 7)} />}
       </Container>
     </>
   );
