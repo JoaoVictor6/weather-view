@@ -6,6 +6,7 @@ export const Nav = styled.nav`
   justify-content: space-between;
   padding: 22px 18px; 
   color: #fff;
+  position: relative;
   h1 {
     font-weight: 600;
     font-size: 1.7rem;
