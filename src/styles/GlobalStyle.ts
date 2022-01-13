@@ -24,4 +24,10 @@ export default createGlobalStyle`
     border: none;
     cursor: pointer;
   }
+
+  input {
+    outline: none;
+    background: none;
+    border: none;
+  }
 `;

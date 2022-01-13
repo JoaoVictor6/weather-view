@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  padding: 16px 32px;
+  padding: 16px 16px;
   display: flex;
   flex-direction: column;
   gap: 18px;
 
   .weather-section {
+    padding: 8px 12px;
+    background: rgba(250, 240, 237, 0.21);
+    border-radius: 4px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
