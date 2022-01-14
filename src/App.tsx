@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable no-undef */
+import {
+  createContext, useEffect, useState,
+} from 'react';
 import Menu from './components/Menu';
 import { Container } from './styles/pages/app';
 import sunrise from './assets/images/sunrise.png';
@@ -10,12 +13,18 @@ import locationNotFound from './assets/images/location-not-found.svg';
 import ForecastsContainer from './components/ForecastsContainer';
 import useGeolocation from './hooks/useGeolocation';
 
+export const WeatherContext = createContext<null | {
+  setForecasts: React.Dispatch<React.SetStateAction<ForecastsProps[] | undefined>>
+  setWeatherInfo: React.Dispatch<React.SetStateAction<Pick<APIResponse, 'current_observation' | 'location'> | undefined>>
+}>(null);
+
 function App() {
   const [forecasts, setForecasts] = useState<ForecastsProps[]>();
   const [weatherInfo, setWeatherInfo] = useState<
     Pick<APIResponse, 'current_observation' | 'location'>
   >();
   const { coords } = useGeolocation();
+
   useEffect(() => {
     (async () => {
       const response = await getWeather(coords);
@@ -28,8 +37,13 @@ function App() {
       }
     })();
   }, [coords]);
+
   return (
-    <>
+    <WeatherContext.Provider value={{
+      setWeatherInfo,
+      setForecasts,
+    }}
+    >
       <Menu title={{
         city: weatherInfo?.location.city,
         region: weatherInfo?.location.region,
@@ -67,7 +81,7 @@ function App() {
         </header>
         {forecasts && <ForecastsContainer forecast={forecasts?.slice(1, 8)} />}
       </Container>
-    </>
+    </WeatherContext.Provider>
   );
 }
 
