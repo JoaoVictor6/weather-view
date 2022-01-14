@@ -23,7 +23,13 @@ export const Container = styled.main`
     }
 
     img {
-      width: 80%;
+      width: 40%;
+    }
+
+    @media (max-width: 614px) {
+      img {
+        width: 50%;
+      }
     }
   }
 
@@ -42,6 +48,20 @@ export const Container = styled.main`
       img {
         width: 2rem;
       }
+    }
+    .search-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    form {
+      position: static;
+      margin: 1rem 0;
+    }
+
+    @media (min-width: 1016px) {
+      width: 60%;
+      margin: 0 auto;
     }
   }
 `;

@@ -8,12 +8,13 @@ import Popup from '../Popup';
 import { appearAnimation, disappearAnimation, Form } from './style';
 
 interface SearchAddressProps {
-  appear: boolean
+  // eslint-disable-next-line react/require-default-props
+  appear?: boolean
   // eslint-disable-next-line react/require-default-props
   onSearch?: () => void
 }
 
-export default function SearchAddress({ appear, onSearch }:SearchAddressProps) {
+export default function SearchAddress({ appear = true, onSearch }:SearchAddressProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const weatherContext = useContext(WeatherContext);
