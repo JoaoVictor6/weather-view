@@ -48,6 +48,12 @@ export async function getLocalization(query: string) {
   const { data } = await httpMaps.get<LocalizationSearch>('geocode/json', {
     params: { address: query, language: 'pt-BR' },
   });
+  if (!data.results[0]) {
+    return {
+      longitude: 0,
+      latitude: 0,
+    };
+  }
 
   return {
     longitude: data.results[0].geometry.location.lng as unknown as number,

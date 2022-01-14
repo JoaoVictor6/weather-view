@@ -1,7 +1,10 @@
 /* eslint-disable consistent-return */
-import { useContext, useEffect, useRef } from 'react';
+import {
+  useContext, useEffect, useRef, useState,
+} from 'react';
 import { WeatherContext } from '../../App';
 import { getLocalization, getWeather } from '../../utils/axios';
+import Popup from '../Popup';
 import { appearAnimation, disappearAnimation, Form } from './style';
 
 interface SearchAddressProps {
@@ -14,6 +17,7 @@ export default function SearchAddress({ appear, onSearch }:SearchAddressProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const weatherContext = useContext(WeatherContext);
+  const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
     if (appear) {
@@ -44,6 +48,11 @@ export default function SearchAddress({ appear, onSearch }:SearchAddressProps) {
 
   async function weatherUpdate() {
     const { latitude, longitude } = await getLocalization(inputRef.current?.value as string);
+    if (latitude === 0 || longitude === 0) {
+      setError('Local não encontrado');
+      return;
+    }
+    setError(undefined);
     const response = await getWeather({ latitude, longitude });
     weatherContext?.setWeatherInfo(response);
     weatherContext?.setForecasts(response?.forecasts);
@@ -64,6 +73,7 @@ export default function SearchAddress({ appear, onSearch }:SearchAddressProps) {
           <path fill="#fff" fillRule="evenodd" d="M5.555 4.455a7.7 7.7 0 1110.89 10.89L11 20.79l-5.445-5.445a7.7 7.7 0 010-10.89zM11 12.1a2.2 2.2 0 100-4.4 2.2 2.2 0 000 4.4z" clipRule="evenodd" />
         </svg>
       </button>
+      {error && <Popup type="error" message={error} />}
     </Form>
   );
 }
