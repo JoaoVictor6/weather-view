@@ -31,5 +31,21 @@ export const Container = styled.section`
         font-size: 1.625rem;
       }
     }
+
+  }
+  @media (min-width: 1016px) {
+    flex-direction: row;
+    overflow-x: auto;
+
+    .weather-section {
+      flex-direction: column;
+      width: 30vh;
+
+      .col-1 {
+        .temp {
+          width: 20vh;
+        }
+      }
+    }
   }
 `;

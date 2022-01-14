@@ -12,6 +12,7 @@ import { APIResponse, ForecastsProps } from './interfaces';
 import locationNotFound from './assets/images/location-not-found.svg';
 import ForecastsContainer from './components/ForecastsContainer';
 import useGeolocation from './hooks/useGeolocation';
+import SearchAddress from './components/SearchAddress';
 
 export const WeatherContext = createContext<null | {
   setForecasts: React.Dispatch<React.SetStateAction<ForecastsProps[] | undefined>>
@@ -64,7 +65,9 @@ function App() {
           </section>
           <section className="header__footer">
             {weatherInfo === undefined ? (
-              <p>Not found</p>
+              <section className="search-container">
+                <SearchAddress />
+              </section>
             ) : (
               <>
                 <p>
