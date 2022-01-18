@@ -17,7 +17,7 @@ interface SearchAddressProps {
 export default function SearchAddress({ appear = true, onSearch }:SearchAddressProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const weatherContext = useContext(WeatherContext);
+  const { setForecasts, setWeatherInfo } = useContext(WeatherContext);
   const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
@@ -55,8 +55,9 @@ export default function SearchAddress({ appear = true, onSearch }:SearchAddressP
     }
     setError(undefined);
     const response = await getWeather({ latitude, longitude });
-    weatherContext?.setWeatherInfo(response);
-    weatherContext?.setForecasts(response?.forecasts);
+
+    setWeatherInfo && setWeatherInfo(response);
+    setForecasts && setForecasts(response?.forecasts);
   }
   return (
     <Form
