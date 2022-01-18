@@ -30,4 +30,8 @@ export default createGlobalStyle`
     background: none;
     border: none;
   }
+
+  ul {
+    list-style: none;
+  }
 `;
