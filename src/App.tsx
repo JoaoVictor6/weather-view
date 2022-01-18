@@ -14,10 +14,12 @@ import ForecastsContainer from './components/ForecastsContainer';
 import useGeolocation from './hooks/useGeolocation';
 import SearchAddress from './components/SearchAddress';
 
-export const WeatherContext = createContext<null | {
-  setForecasts: React.Dispatch<React.SetStateAction<ForecastsProps[] | undefined>>
-  setWeatherInfo: React.Dispatch<React.SetStateAction<Pick<APIResponse, 'current_observation' | 'location'> | undefined>>
-}>(null);
+type ContextValues = {
+  setWeatherInfo?: React.Dispatch<React.SetStateAction<Pick<APIResponse, 'current_observation' | 'location'> | undefined>>
+  weatherInfo?: Pick<APIResponse, 'current_observation' | 'location'> | undefined
+  setForecasts?: React.Dispatch<React.SetStateAction<ForecastsProps[] | undefined>>
+}
+export const WeatherContext = createContext<Partial<ContextValues>>({});
 
 function App() {
   const [forecasts, setForecasts] = useState<ForecastsProps[]>();
@@ -43,6 +45,7 @@ function App() {
     <WeatherContext.Provider value={{
       setWeatherInfo,
       setForecasts,
+      weatherInfo,
     }}
     >
       <Menu title={{
