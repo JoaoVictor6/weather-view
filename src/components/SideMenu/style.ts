@@ -77,4 +77,9 @@ export const Menu = styled.menu`
   &.open {
     transform: translateY(0);
   }
+
+  @media (max-width: 414px) {
+    width: 100vw;
+    background: rgba(54, 66, 77, .9);
+  }
 `;
