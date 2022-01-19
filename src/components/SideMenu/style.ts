@@ -7,16 +7,31 @@ export const Menu = styled.menu`
   left: 0;
   background: rgba(54, 66, 77, 0.63);
   transform: translateX(-100%);
-  width: 30vw;
+  width: 391px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   padding: 0 16px;
-  padding-top: 3rem;
+  padding-top: 4rem;
 
   transition: all .3s;
+
+  .menu-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    button > svg {
+      transition: all .1s;
+      fill: #fff;
+      width: 2rem;
+
+      &:hover {
+        fill: #F73155;
+      }
+    }
+  }
   ul {
     width: 100%;
     display: flex;
