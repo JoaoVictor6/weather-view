@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchAddress from '../SearchAddress';
+import SideMenu from '../SideMenu';
 import { Nav } from './style';
 
 type MenuProps = {
@@ -11,6 +12,19 @@ type MenuProps = {
 export default function Menu({ title }: MenuProps) {
   const [open, isOpen] = useState(false);
   const [search, setSearch] = useState(false);
+
+  useEffect(() => {
+    if (search) {
+      isOpen(() => !search);
+    }
+  }, [search]);
+
+  useEffect(() => {
+    if (open) {
+      setSearch(() => !open);
+    }
+  }, [open]);
+
   return (
     <Nav>
       <button
@@ -20,6 +34,7 @@ export default function Menu({ title }: MenuProps) {
       >
         <div className={`line ${open && 'open'}`} />
       </button>
+      <SideMenu isOpen={open} />
       <h1>
         {title.city ? `${title.city}, ${title.region}` : 'Not found'}
       </h1>

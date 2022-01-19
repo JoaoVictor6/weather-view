@@ -55,5 +55,6 @@ export const Nav = styled.nav`
     justify-content: center;
     align-items: center;
     position: relative;
+    z-index: 1;
   }
 `;
